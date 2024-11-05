@@ -12,23 +12,22 @@
             btnRefresh.IsEnabled = false;
             actIsBusy.IsRunning = true;
 
-            Models.WeatherData weatherData = await Services.WeatherServer.GetWeather(txtPostalCode.Text);
+            this.BindingContext = await Services.WeatherServer.GetWeather(txtPostalCode.Text);
 
-            lblWind.Text = weatherData.Wind.ToString();
-            lblHumidity.Text = weatherData.Humidity.ToString();
-            lblPrecipitation.Text = weatherData.Precipitation.ToString();
-            lblTemperature.Text = weatherData.Temperature.ToString("#");
-
-            imgCondition.Source = weatherData.Condition switch
-            {
-                Models.WeatherType.Sunny => ImageSource.FromFile("sunny.png"),
-                Models.WeatherType.Cloudy => ImageSource.FromFile("cloud.png"),
-                _ => ImageSource.FromFile("question.png")
-            };
+            // lblWind.Text = weatherData.Wind.ToString();
+            // lblHumidity.Text = weatherData.Humidity.ToString();
+            // lblPrecipitation.Text = weatherData.Precipitation.ToString();
+            // lblTemperature.Text = weatherData.Temperature.ToString("#");
+            //
+            // imgCondition.Source = weatherData.Condition switch
+            // {
+            //     Models.WeatherType.Sunny => ImageSource.FromFile("sunny.png"),
+            //     Models.WeatherType.Cloudy => ImageSource.FromFile("cloud.png"),
+            //     _ => ImageSource.FromFile("question.png")
+            // };
 
             btnRefresh.IsEnabled = true;
             actIsBusy.IsRunning = false;
         }
     }
-
 }
