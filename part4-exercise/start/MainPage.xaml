@@ -4,7 +4,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherClient.MainPage"
              xmlns:models="clr-namespace:WeatherClient.Models"
+             xmlns:cvt="clr-namespace:WeatherClient.Converters"
              x:DataType="models:WeatherData">
+    <ContentPage.Resources>
+        <cvt:WeatherConditionToImageConverter x:Key="WeatherConditionToImageConverter" />
+    </ContentPage.Resources>
     <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="5">
         <VerticalStackLayout>
             <Label
@@ -20,8 +24,8 @@
             <Grid Grid.Row="2" RowDefinitions="Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, Auto"
                   Margin="0,5,0,0">
                 <Label Grid.Row="0" Grid.Column="0" Text="Condition" VerticalOptions="Center" />
-                <Image x:Name="imgCondition" Grid.Row="0" Grid.Column="1" HeightRequest="25" WidthRequest="25"
-                       Source="question.png" HorizontalOptions="Start" />
+                <Image Grid.Row="0" Grid.Column="1" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start"
+                       Source="{Binding Condition,Converter={StaticResource WeatherConditionToImageConverter}}" />
                 <Label Grid.Row="1" Grid.Column="0" Text="Temperature" Margin="0,0,20,0" />
                 <Label Grid.Row="1" Grid.Column="1" Text="{Binding Temperature}" />
                 <Label Grid.Row="2" Grid.Column="0" Text="Humidity" Margin="0,0,20,0" />
